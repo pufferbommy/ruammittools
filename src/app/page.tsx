@@ -7,7 +7,7 @@ import {
   type Node,
   ReactFlow,
 } from "@xyflow/react";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import "@xyflow/react/dist/style.css";
 import { useCallback, useState } from "react";
 
@@ -15,15 +15,30 @@ const initialNodes: Node[] = [
   {
     id: "n1",
     position: { x: 0, y: 0 },
-    data: { label: "คอนเทนต์" },
+    data: {
+      label: "YouTube Metadata Extractor",
+    },
   },
   {
     id: "n2",
     position: { x: 0, y: 100 },
-    data: { label: "YouTube Metadata Extractor" },
+    data: {
+      label: <Input placeholder="URL" />,
+    },
+  },
+  {
+    id: "n3",
+    position: { x: 0, y: 200 },
+    data: {
+      label: <>?asdad</>,
+    },
   },
 ];
-const initialEdges = [{ id: "n1-n2", source: "n1", target: "n2" }];
+
+const initialEdges = [
+  { id: "n1-n2", source: "n1", target: "n2" },
+  { id: "n2-n3", source: "n2", target: "n3" },
+];
 
 export default function Home() {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
@@ -46,9 +61,6 @@ export default function Home() {
 
   return (
     <div className="h-screen">
-      <div className="fixed right-2 top-2">
-        <Button disabled>Create Own Tool</Button>
-      </div>
       <ReactFlow
         nodes={nodes}
         edges={edges}
